@@ -6,6 +6,6 @@ package com.github.holeksii;
 public class Main {
 
   public static void main(String[] args) {
-    System.out.println("Hello world!");
+    System.out.println("Oleksii Hytsiv for Intellias, 2023\nFor more information, see README.md");
   }
 }
