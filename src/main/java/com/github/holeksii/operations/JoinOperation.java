@@ -1,4 +1,4 @@
-package com.github.holeksii;
+package com.github.holeksii.operations;
 
 import java.util.Collection;
 
