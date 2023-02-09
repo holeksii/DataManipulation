@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
 
-/**
  * Left join operation. Implementation of the join operation interface.
  *
  * @param <K>  type of key.

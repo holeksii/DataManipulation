@@ -18,7 +18,7 @@ public class LeftJoinOperationTests {
   {
     testHelper = new TestHelper(new LeftJoinOperation<>());
   }
-
+  
   @BeforeAll
   static void setUp() {
     resultCollection = new ArrayList<>();
@@ -41,7 +41,6 @@ public class LeftJoinOperationTests {
 
     assertEquals(
         testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
-        resultCollection);
   }
 
   @Test
@@ -55,7 +54,6 @@ public class LeftJoinOperationTests {
 
     assertEquals(
         testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
-        resultCollection);
   }
 
   @Test
