@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 public class InnerJoinOperationTests {
 
-  Utils utils = new Utils(new InnerJoinOperation<>());
+  TestHelper testHelper = new TestHelper(new InnerJoinOperation<>());
   static Collection<JoinedDataRow<Integer, String, String>> resultCollection;
 
   @BeforeAll
@@ -28,35 +28,35 @@ public class InnerJoinOperationTests {
 
   @Test
   void testJoint() {
-    utils.setCollections();
+    testHelper.setCollections();
 
     resultCollection.add(new JoinedDataRow<>(0, "Ukraine", "Kyiv"));
     resultCollection.add(new JoinedDataRow<>(1, "Germany", "Berlin"));
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
 
     assertEquals(
-        utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection()),
+        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 
   @Test
   void testJointTheLast() {
-    utils.setCollectionsTheLast();
+    testHelper.setCollectionsTheLast();
 
     resultCollection.add(new JoinedDataRow<>(0, "Ukraine", "Kyiv"));
     resultCollection.add(new JoinedDataRow<>(1, "Germany", "Berlin"));
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
 
     assertEquals(
-        utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection()),
+        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 
   @Test
   void testJointNoMatches() {
-    utils.setCollectionsNoMatches();
+    testHelper.setCollectionsNoMatches();
 
-    assertTrue(utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection())
+    assertTrue(testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection())
         .isEmpty());
   }
 }
