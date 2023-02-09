@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Utils {
+public class TestHelper {
 
   private JoinOperation<DataRow<Integer, String>, DataRow<Integer, String>,
       JoinedDataRow<Integer, String, String>> joinOperation;
@@ -22,7 +22,7 @@ public class Utils {
     rightCollection = new ArrayList<>();
   }
 
-  public Utils(JoinOperation<DataRow<Integer, String>, DataRow<Integer, String>,
+  public TestHelper(JoinOperation<DataRow<Integer, String>, DataRow<Integer, String>,
       JoinedDataRow<Integer, String, String>> joinOperation) {
     this.joinOperation = joinOperation;
   }
