@@ -12,8 +12,12 @@ import org.junit.jupiter.api.Test;
 
 public class LeftJoinOperationTests {
 
-  Utils utils = new Utils(new LeftJoinOperation<>());
+  TestHelper testHelper;
   static Collection<JoinedDataRow<Integer, String, String>> resultCollection;
+
+  {
+    testHelper = new TestHelper(new LeftJoinOperation<>());
+  }
 
   @BeforeAll
   static void setUp() {
@@ -27,7 +31,7 @@ public class LeftJoinOperationTests {
 
   @Test
   void testJoint() {
-    utils.setCollections();
+    testHelper.setCollections();
 
     resultCollection.add(new JoinedDataRow<>(0, "Ukraine", "Kyiv"));
     resultCollection.add(new JoinedDataRow<>(1, "Germany", "Berlin"));
@@ -36,13 +40,14 @@ public class LeftJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(4, "Poland", null));
 
     assertEquals(
-        utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 
   @Test
   void testJointTheLast() {
-    utils.setCollectionsTheLast();
+    testHelper.setCollectionsTheLast();
 
     resultCollection.add(new JoinedDataRow<>(0, "Ukraine", "Kyiv"));
     resultCollection.add(new JoinedDataRow<>(1, "Germany", "Berlin"));
@@ -50,13 +55,14 @@ public class LeftJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
 
     assertEquals(
-        utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 
   @Test
   void testJointNoMatches() {
-    utils.setCollectionsNoMatches();
+    testHelper.setCollectionsNoMatches();
 
     resultCollection.add(new JoinedDataRow<>(9, "Ukraine", null));
     resultCollection.add(new JoinedDataRow<>(10, "Germany", null));
@@ -65,7 +71,8 @@ public class LeftJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(40, "Poland", null));
 
     assertEquals(
-        utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 }

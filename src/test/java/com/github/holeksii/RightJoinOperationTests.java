@@ -1,19 +1,18 @@
 package com.github.holeksii;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.holeksii.data.JoinedDataRow;
-import com.github.holeksii.operations.InnerJoinOperation;
+import com.github.holeksii.operations.RightJoinOperation;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class InnerJoinOperationTests {
+public class RightJoinOperationTests {
 
-  TestHelper testHelper = new TestHelper(new InnerJoinOperation<>());
+  TestHelper testHelper = new TestHelper(new RightJoinOperation<>());
   static Collection<JoinedDataRow<Integer, String, String>> resultCollection;
 
   @BeforeAll
@@ -33,6 +32,7 @@ public class InnerJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(0, "Ukraine", "Kyiv"));
     resultCollection.add(new JoinedDataRow<>(1, "Germany", "Berlin"));
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
+    resultCollection.add(new JoinedDataRow<>(5, null, "Warsaw"));
 
     assertEquals(
         testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
@@ -56,7 +56,13 @@ public class InnerJoinOperationTests {
   void testJointNoMatches() {
     testHelper.setCollectionsNoMatches();
 
-    assertTrue(testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection())
-        .isEmpty());
+    resultCollection.add(new JoinedDataRow<>(0, null, "Kyiv"));
+    resultCollection.add(new JoinedDataRow<>(1, null, "Berlin"));
+    resultCollection.add(new JoinedDataRow<>(3, null, "Budapest"));
+    resultCollection.add(new JoinedDataRow<>(4, null, "London"));
+
+    assertEquals(
+        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        resultCollection);
   }
 }
