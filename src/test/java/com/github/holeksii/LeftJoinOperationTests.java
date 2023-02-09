@@ -18,7 +18,7 @@ public class LeftJoinOperationTests {
   {
     testHelper = new TestHelper(new LeftJoinOperation<>());
   }
-  
+
   @BeforeAll
   static void setUp() {
     resultCollection = new ArrayList<>();
@@ -40,7 +40,9 @@ public class LeftJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(4, "Poland", null));
 
     assertEquals(
-        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        resultCollection);
   }
 
   @Test
@@ -53,7 +55,9 @@ public class LeftJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
 
     assertEquals(
-        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        resultCollection);
   }
 
   @Test
@@ -67,7 +71,8 @@ public class LeftJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(40, "Poland", null));
 
     assertEquals(
-        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 }
