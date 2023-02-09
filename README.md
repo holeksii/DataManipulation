@@ -7,6 +7,7 @@ Technology | Version
 JDK        | 17+
 Maven      | 3.6+
 
+Other versions have not been tested.
 
 
 ### Clone
