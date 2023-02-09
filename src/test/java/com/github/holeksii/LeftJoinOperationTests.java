@@ -12,15 +12,12 @@ import org.junit.jupiter.api.Test;
 
 public class LeftJoinOperationTests {
 
-  TestHelper testHelper;
+  static TestHelper testHelper;
   static Collection<JoinedDataRow<Integer, String, String>> resultCollection;
-
-  {
-    testHelper = new TestHelper(new LeftJoinOperation<>());
-  }
 
   @BeforeAll
   static void setUp() {
+    testHelper = new TestHelper(new LeftJoinOperation<>());
     resultCollection = new ArrayList<>();
   }
 

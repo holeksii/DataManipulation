@@ -12,11 +12,12 @@ import org.junit.jupiter.api.Test;
 
 public class RightJoinOperationTests {
 
-  TestHelper testHelper = new TestHelper(new RightJoinOperation<>());
+  static TestHelper testHelper;
   static Collection<JoinedDataRow<Integer, String, String>> resultCollection;
 
   @BeforeAll
   static void setUp() {
+    testHelper = new TestHelper(new RightJoinOperation<>());
     resultCollection = new ArrayList<>();
   }
 
@@ -35,7 +36,8 @@ public class RightJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(5, null, "Warsaw"));
 
     assertEquals(
-        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 
@@ -48,7 +50,8 @@ public class RightJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
 
     assertEquals(
-        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 
@@ -62,7 +65,8 @@ public class RightJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(4, null, "London"));
 
     assertEquals(
-        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 }

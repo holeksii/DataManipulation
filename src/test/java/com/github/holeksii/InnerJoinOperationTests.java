@@ -13,11 +13,12 @@ import org.junit.jupiter.api.Test;
 
 public class InnerJoinOperationTests {
 
-  TestHelper testHelper = new TestHelper(new InnerJoinOperation<>());
+  static TestHelper testHelper;
   static Collection<JoinedDataRow<Integer, String, String>> resultCollection;
 
   @BeforeAll
   static void setUp() {
+    testHelper = new TestHelper(new InnerJoinOperation<>());
     resultCollection = new ArrayList<>();
   }
 
@@ -35,7 +36,8 @@ public class InnerJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
 
     assertEquals(
-        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 
@@ -48,7 +50,8 @@ public class InnerJoinOperationTests {
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
 
     assertEquals(
-        testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
+        testHelper.getJoinOperation()
+            .join(testHelper.getLeftCollection(), testHelper.getRightCollection()),
         resultCollection);
   }
 
@@ -56,7 +59,8 @@ public class InnerJoinOperationTests {
   void testJointNoMatches() {
     testHelper.setCollectionsNoMatches();
 
-    assertTrue(testHelper.getJoinOperation().join(testHelper.getLeftCollection(), testHelper.getRightCollection())
+    assertTrue(testHelper.getJoinOperation()
+        .join(testHelper.getLeftCollection(), testHelper.getRightCollection())
         .isEmpty());
   }
 }
