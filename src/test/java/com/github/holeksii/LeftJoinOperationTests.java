@@ -1,19 +1,18 @@
 package com.github.holeksii;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.holeksii.data.JoinedDataRow;
-import com.github.holeksii.operations.InnerJoinOperation;
+import com.github.holeksii.operations.LeftJoinOperation;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class InnerJoinOperationTests {
+public class LeftJoinOperationTests {
 
-  Utils utils = new Utils(new InnerJoinOperation<>());
+  Utils utils = new Utils(new LeftJoinOperation<>());
   static Collection<JoinedDataRow<Integer, String, String>> resultCollection;
 
   @BeforeAll
@@ -32,7 +31,9 @@ public class InnerJoinOperationTests {
 
     resultCollection.add(new JoinedDataRow<>(0, "Ukraine", "Kyiv"));
     resultCollection.add(new JoinedDataRow<>(1, "Germany", "Berlin"));
+    resultCollection.add(new JoinedDataRow<>(2, "France", null));
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
+    resultCollection.add(new JoinedDataRow<>(4, "Poland", null));
 
     assertEquals(
         utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection()),
@@ -45,6 +46,7 @@ public class InnerJoinOperationTests {
 
     resultCollection.add(new JoinedDataRow<>(0, "Ukraine", "Kyiv"));
     resultCollection.add(new JoinedDataRow<>(1, "Germany", "Berlin"));
+    resultCollection.add(new JoinedDataRow<>(2, "France", null));
     resultCollection.add(new JoinedDataRow<>(3, "Hungary", "Budapest"));
 
     assertEquals(
@@ -56,7 +58,14 @@ public class InnerJoinOperationTests {
   void testJointNoMatches() {
     utils.setCollectionsNoMatches();
 
-    assertTrue(utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection())
-        .isEmpty());
+    resultCollection.add(new JoinedDataRow<>(9, "Ukraine", null));
+    resultCollection.add(new JoinedDataRow<>(10, "Germany", null));
+    resultCollection.add(new JoinedDataRow<>(20, "France", null));
+    resultCollection.add(new JoinedDataRow<>(30, "Hungary", null));
+    resultCollection.add(new JoinedDataRow<>(40, "Poland", null));
+
+    assertEquals(
+        utils.getJoinOperation().join(utils.getLeftCollection(), utils.getRightCollection()),
+        resultCollection);
   }
 }
