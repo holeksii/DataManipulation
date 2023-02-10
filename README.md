@@ -24,3 +24,9 @@ git@github.com:holeksii/intellias-java-testcase.git
 ```bash
 mvn exec:java
 ```
+### Run test
+```bash
+mvn test
+```
+
+### Time complexity of each alhorithm is O(N + M)
