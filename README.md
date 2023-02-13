@@ -13,11 +13,11 @@ Other versions have not been tested.
 ### Clone
 * with HTTPS
 ```bash
-https://github.com/holeksii/intellias-java-testcase.git
+git clone https://github.com/holeksii/intellias-java-testcase.git
 ```
 * with SSH
 ```bash
-git@github.com:holeksii/intellias-java-testcase.git
+git clone git@github.com:holeksii/intellias-java-testcase.git
 ```
 
 ### Run
