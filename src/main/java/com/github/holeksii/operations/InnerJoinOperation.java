@@ -4,7 +4,8 @@ import com.github.holeksii.data.DataRow;
 import com.github.holeksii.data.JoinedDataRow;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Inner join operation.
@@ -28,33 +29,17 @@ public class InnerJoinOperation<K extends Comparable<K>, V1, V2> implements
       Collection<DataRow<K, V2>> rightCollection) {
     Collection<JoinedDataRow<K, V1, V2>> resultCollection = new ArrayList<>();
 
-    Iterator<DataRow<K, V1>> leftIterator = leftCollection.iterator();
-    Iterator<DataRow<K, V2>> rightIterator = rightCollection.iterator();
-    DataRow<K, V1> leftValue = leftIterator.next();
-    DataRow<K, V2> rightValue = rightIterator.next();
-
-    while (leftIterator.hasNext() || rightIterator.hasNext()) {
-      if (leftValue.getKey().equals(rightValue.getKey())) {
-        resultCollection.add(
-            new JoinedDataRow<>(leftValue.getKey(), leftValue.getValue(), rightValue.getValue()));
-        leftValue = leftIterator.next();
-        rightValue = rightIterator.next();
-      } else if (leftValue.getKey().compareTo(rightValue.getKey()) < 0) {
-        if (!leftIterator.hasNext()) {
-          break;
-        }
-        leftValue = leftIterator.next();
-      } else {
-        if (!rightIterator.hasNext()) {
-          break;
-        }
-        rightValue = rightIterator.next();
-      }
+    Map<K, V1> leftMap = new HashMap<>();
+    for (DataRow<K, V1> leftRow : leftCollection) {
+      leftMap.put(leftRow.getKey(), leftRow.getValue());
     }
 
-    if (leftValue.getKey().equals(rightValue.getKey())) {
-      resultCollection.add(
-          new JoinedDataRow<>(leftValue.getKey(), leftValue.getValue(), rightValue.getValue()));
+    for (DataRow<K, V2> rightRow : rightCollection) {
+      V1 leftValue = leftMap.get(rightRow.getKey());
+      if (leftValue != null) {
+        resultCollection.add(
+            new JoinedDataRow<>(rightRow.getKey(), leftValue, rightRow.getValue()));
+      }
     }
 
     return resultCollection;
