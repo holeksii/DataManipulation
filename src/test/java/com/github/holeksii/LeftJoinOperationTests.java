@@ -3,7 +3,7 @@ package com.github.holeksii;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.github.holeksii.data.JoinedDataRow;
-import com.github.holeksii.operations.LeftJoinOperation;
+import com.github.holeksii.operations.LeftOuterJoinOperation;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,12 +16,12 @@ public class LeftJoinOperationTests {
   static Collection<JoinedDataRow<Integer, String, String>> resultCollection;
 
   {
-    testHelper = new TestHelper(new LeftJoinOperation<>());
+    testHelper = new TestHelper(new LeftOuterJoinOperation<>());
   }
 
   @BeforeAll
   static void setUp() {
-    testHelper = new TestHelper(new LeftJoinOperation<>());
+    testHelper = new TestHelper(new LeftOuterJoinOperation<>());
     resultCollection = new ArrayList<>();
   }
 

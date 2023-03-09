@@ -14,7 +14,7 @@ import java.util.Map;
  * @param <V1> type of elements in the left collection.
  * @param <V2> type of elements in the right collection.
  */
-public class RightJoinOperation<K extends Comparable<K>, V1, V2> implements
+public class RightOuterJoinOperation<K extends Comparable<K>, V1, V2> implements
     JoinOperation<DataRow<K, V1>, DataRow<K, V2>, JoinedDataRow<K, V1, V2>> {
 
   /**

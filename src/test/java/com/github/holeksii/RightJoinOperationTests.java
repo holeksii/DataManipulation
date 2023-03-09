@@ -3,7 +3,7 @@ package com.github.holeksii;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.github.holeksii.data.JoinedDataRow;
-import com.github.holeksii.operations.RightJoinOperation;
+import com.github.holeksii.operations.RightOuterJoinOperation;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,7 +17,7 @@ public class RightJoinOperationTests {
 
   @BeforeAll
   static void setUp() {
-    testHelper = new TestHelper(new RightJoinOperation<>());
+    testHelper = new TestHelper(new RightOuterJoinOperation<>());
     resultCollection = new ArrayList<>();
   }
 

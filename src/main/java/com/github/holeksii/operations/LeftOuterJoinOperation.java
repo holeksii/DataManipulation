@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
  * @param <V2> type of elements in the right collection.
  */
 @AllArgsConstructor
-public class LeftJoinOperation<K extends Comparable<K>, V1, V2> implements
+public class LeftOuterJoinOperation<K extends Comparable<K>, V1, V2> implements
     JoinOperation<DataRow<K, V1>, DataRow<K, V2>, JoinedDataRow<K, V1, V2>> {
 
   /**
