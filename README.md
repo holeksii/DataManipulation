@@ -1,6 +1,5 @@
 # Minimal set of data manipulation algorithms
 ## [About operations](docs/About.md)
-#
 
 ### Requirements
 Technology | Version
